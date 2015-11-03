@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8"/>
+		<title>23 Eventos Personalizados</title>		
+				
+		<!--Scripts Aca -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js">		
+		</script>
+		<script type="text/javascript">
+			
+			$(document).on("ready",function(){
+				
+				//el evento personalizado se llama cambio
+				$('#miInput').on("cambio",function(evento,id){
+					console.log(id);
+					if(this.checked){						
+						$('#miInput').prop("checked",null);
+						$('.cambiar').text("Encendido");
+					}
+					else{
+						$('#miInput').prop("checked",true);
+						$('.cambiar').text("Apagado");
+					}
+				});
+				
+				//disparamos el evento cuando se hace clic con trigger
+				$('.cambiar').on("click",function(){
+					var id=$(this).attr("id");
+					$('#miInput').trigger("cambio",[id]);
+				});
+				
+			});
+		
+		</script>
+		
+	</head>
+	<body>
+		<input id="miInput" type="checkbox" checked="checked">
+		<button id="btn1" class="cambiar">Apagado</button>
+		<button id="btn2" class="cambiar">Apagado</button>
+		
+	</body>
+</html>
